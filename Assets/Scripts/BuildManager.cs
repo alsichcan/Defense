@@ -14,17 +14,35 @@ public class BuildManager : MonoBehaviour{
         instance = this;
     }
 
-    public GameObject standardTurretPrefab;
+    public GameObject standardUnitPrefab;
 
-    private void Start()
+    private UnitBluePrint unitToCreate;
+
+    // Unit을 생성할 수 있는지
+    public bool CanCreate { get { return unitToCreate != null; } }
+
+    public bool HasGold { get { return PlayerStats.Gold >= unitToCreate.cost; } }
+
+
+    public void CreateUnitOn(FloorTiles tile)
     {
-        turretToBuild = standardTurretPrefab;
+        if (PlayerStats.Gold < unitToCreate.cost)
+        {
+            Debug.Log("Not enough Gold");
+            return;
+        }
+
+        PlayerStats.Gold -= unitToCreate.cost;
+
+        GameObject unit = (GameObject) Instantiate(unitToCreate.prefab, tile.GetCreatePosition(), Quaternion.identity);
+        tile.unit = unit;
+
+        Debug.Log("Unit Created! Gold left: " + PlayerStats.Gold);
     }
 
-    private GameObject turretToBuild;
 
-    public GameObject GetTurretToBuild()
+    public void SelectUnitToCreate(UnitBluePrint unit)
     {
-        return turretToBuild;
+        unitToCreate = unit;
     }
 }

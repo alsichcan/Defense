@@ -5,6 +5,9 @@ public class CameraController : MonoBehaviour {
     // 카메라 고정 여부
     private bool doMovement = true;
 
+    // 카메라 시작 위치
+    private Vector3 startPos = new Vector3(45.5f, 160f, -5f);
+
     [Header("Mouse Move Attributes")]
     // 카메라 이동 속도
     public float panSpeed = 30f;
@@ -30,11 +33,18 @@ public class CameraController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        if (GameManager.GameIsOver)
+        {
+            transform.position = startPos;
+            this.enabled = false;
+            return;
+        }
+
         // ESC 버튼을 누르면 고정/이동 상태 변경
         if (Input.GetKeyDown(KeyCode.Escape))
             doMovement = !doMovement;
 
-        // 고정 상태인경우 return
+        // 고정pg 상태인경우 return
         if (!doMovement)
             return;
 

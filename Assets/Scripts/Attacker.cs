@@ -5,14 +5,25 @@ using UnityEngine;
 public class Attacker : MonoBehaviour {
 
     private Transform target;
+    private EnemyStats targetEnemy;
 
-    [Header("Attributes")]
+    [Header("General")]
     // Enemy 감지 범위
     public float range = 15f;
+    // 평타 공격력
+    public int damage = 100;
     // 1초에 몇 번 공격할 지
     public float attackRate = 1f;
     // 연속으로 공격하도록
     private float attackCountdown = 0f;
+    
+    [Header("Melee Attack (default)")]
+
+
+    [Header("Range Attack")]
+    public bool useRangeAttack = false;
+    public GameObject bulletPrefab;
+
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
@@ -20,7 +31,7 @@ public class Attacker : MonoBehaviour {
     public Transform partToRotate;
     public float turnSpeed = 10f;
 
-    public GameObject bulletPrefab;
+
     public Transform attackPoint;
     
 
@@ -52,6 +63,7 @@ public class Attacker : MonoBehaviour {
         if(nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+            targetEnemy = nearestEnemy.GetComponent<EnemyStats>();
         }
         else
         {
@@ -65,31 +77,48 @@ public class Attacker : MonoBehaviour {
         if (target == null)
             return;
 
+        LockOnTarget();
+
+        if (attackCountdown <= 0f)
+            {
+            if (useRangeAttack) RangeAttack();
+            else MeleeAttack();
+            attackCountdown = 1f / attackRate;
+            }
+
+        attackCountdown -= Time.deltaTime;
+ 
+
+
+    }
+
+    void LockOnTarget()
+    {
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
 
         // 기존의 각도에서 새로운 각도로 1초에 turnSpeed만큼회전
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        if (attackCountdown <= 0f)
-        {
-            Attack();
-            attackCountdown = 1f / attackRate;
-        }
-
-        attackCountdown -= Time.deltaTime;
-
     }
 
-    void Attack()
+    void RangeAttack()
     {
         GameObject bulletGO = (GameObject) Instantiate(bulletPrefab, attackPoint.position, attackPoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
+        bullet.SetDamage(damage);
 
         if (bullet != null)
         {
             bullet.Seek(target);
+        }
+    }
+
+    void MeleeAttack()
+    {
+        if(targetEnemy != null)
+        {
+            targetEnemy.TakeDamage(damage);
         }
     }
 

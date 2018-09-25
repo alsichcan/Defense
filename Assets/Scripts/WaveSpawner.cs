@@ -12,10 +12,6 @@ public class WaveSpawner : MonoBehaviour {
     // Round 시작 전 5초
     private float countdown = 6f;
 
-    // Round 넘버
-    private int roundNumber = 0;
-
-
     public Text waveCountdownText;
 
     // 1Round당 시간
@@ -39,7 +35,7 @@ public class WaveSpawner : MonoBehaviour {
     IEnumerator SpawnWave()
     {
         // 다음 라운드 시작
-        roundNumber++;
+        PlayerStats.Rounds++;
 
         // 1Round당 시간에
         for (int i = 0; i < roundWave; i++)
@@ -58,6 +54,7 @@ public class WaveSpawner : MonoBehaviour {
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        PlayerStats.EnemyCount++;
     }
 
     void TimeUpdate()
@@ -65,16 +62,16 @@ public class WaveSpawner : MonoBehaviour {
         countdown -= Time.deltaTime;
 
         // 전광판에 표시
-        if (roundNumber < 10)
+        if (PlayerStats.Rounds < 10)
         {
-            if (countdown < 10f) waveCountdownText.text = "Lv." + "0" + roundNumber.ToString() + " " + "0" + Mathf.Floor(countdown).ToString() + "'";
-            else waveCountdownText.text = "Lv." + "0" + roundNumber.ToString() + " " + Mathf.Floor(countdown).ToString() + "'";
+            if (countdown < 10f) waveCountdownText.text = "Lv." + "0" + PlayerStats.Rounds.ToString() + " " + "0" + Mathf.Floor(countdown).ToString() + "'";
+            else waveCountdownText.text = "Lv." + "0" + PlayerStats.Rounds.ToString() + " " + Mathf.Floor(countdown).ToString() + "'";
 
         }
         else
         {
-            if (countdown < 10f) waveCountdownText.text = "Lv." + roundNumber.ToString() + " " + "0" + Mathf.Floor(countdown).ToString() + "'";
-            else waveCountdownText.text = "Lv." + roundNumber.ToString() + " " + Mathf.Floor(countdown).ToString() + "'";
+            if (countdown < 10f) waveCountdownText.text = "Lv." + PlayerStats.Rounds.ToString() + " " + "0" + Mathf.Floor(countdown).ToString() + "'";
+            else waveCountdownText.text = "Lv." + PlayerStats.Rounds.ToString() + " " + Mathf.Floor(countdown).ToString() + "'";
         }
     }
 }
