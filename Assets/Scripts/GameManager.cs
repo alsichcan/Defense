@@ -3,6 +3,7 @@
 public class GameManager : MonoBehaviour {
 
     public static bool GameIsOver;
+    public static int MaxEnemyCount;
 
     public GameObject gameOverUI;
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour {
     {
         GameIsOver = false;
         PlayerStats.Rounds = 0;
+        MaxEnemyCount = 100;
     }
 
     // Update is called once per frame
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour {
         if (GameIsOver)
             return;
 
-		if (PlayerStats.EnemyCount >= 5)
+		if (PlayerStats.EnemyCount >= MaxEnemyCount)
         {
             EndGame();
         }

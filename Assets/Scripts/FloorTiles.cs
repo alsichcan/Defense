@@ -7,9 +7,12 @@ public class FloorTiles : MonoBehaviour {
     public Color notEnoughGoldColor;
     public Vector3 positionOffset;
 
-    [Header("Optional")]
+    [HideInInspector]
     public GameObject unit;
-    
+    [HideInInspector]
+    public UnitBluePrint unitBlueprint;
+    [HideInInspector]
+    public bool isUpgraded = false;
 
     private Renderer rend;
     private Color startColor;
@@ -37,19 +40,71 @@ public class FloorTiles : MonoBehaviour {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (!buildManager.CanCreate)
-            return;
-
-        // 포탑이 설치되어 있지 않은 경우
+        // 포탑이 설치되어 있는 경우
         if (unit != null)
         {
-            Debug.Log("Can't build there! - TODO : Display on Screen.");
+            buildManager.SelectTile(this);
             return;
         }
 
-        buildManager.CreateUnitOn(this);
+        if (!buildManager.CanCreate)
+            return;
+
+
+        CreateUnit(buildManager.GetUnitToCreate());
 
     }
+
+    void CreateUnit(UnitBluePrint blueprint)
+    {
+        if (PlayerStats.Gold < blueprint.cost)
+        {
+            Debug.Log("Not enough Gold");
+            return;
+        }
+
+        PlayerStats.Gold -= blueprint.cost;
+
+        GameObject _unit = (GameObject)Instantiate(blueprint.prefab, GetCreatePosition(), Quaternion.identity);
+        this.unit = _unit;
+
+        unitBlueprint = blueprint;
+
+        Debug.Log("Unit Created!");
+    }
+
+    public void UpgradeUnit()
+    {
+        if (PlayerStats.Gold < unitBlueprint.upgradeCost)
+        {
+            Debug.Log("Not enough Gold to upgrade that");
+            return;
+        }
+
+        PlayerStats.Gold -= unitBlueprint.upgradeCost;
+
+        // Get rid of the old turret
+        Destroy(unit);
+
+        // Build a new one
+        GameObject _unit = (GameObject)Instantiate(unitBlueprint.upgradedPrefab, GetCreatePosition(), Quaternion.identity);
+        this.unit = _unit;
+
+        isUpgraded = true;
+
+        Debug.Log("Unit Upgraded!");
+    }
+
+
+    public void SellUnit()
+    {
+        PlayerStats.Gold += unitBlueprint.GetSellAmount();
+
+        Destroy(unit);
+        unitBlueprint = null;
+    }
+
+
 
     // 마우스 커서가 Object의 Collider 범위에 들어올 때
     // 해당 Object의 color를 hoverColor로 변경

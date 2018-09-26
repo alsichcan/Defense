@@ -14,15 +14,15 @@ public class PlayerStats : MonoBehaviour {
     public static int EnemyCount;
     public int startEnemyCount= 0;
 
-    public static int BossHitPoint;
-    public int startBossHitPoint = 0;
+    public static int BossHealthPoint;
+    public int startBossHealthPoint = 0;
 
     private void Start()
     {
         Gold = startGold;
         Lumber = startLumber;
         EnemyCount = startEnemyCount;
-        BossHitPoint = startBossHitPoint;
+        BossHealthPoint = startBossHealthPoint;
 
         Rounds = 0;
     }

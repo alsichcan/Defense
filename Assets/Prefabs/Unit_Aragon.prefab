@@ -182,10 +182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5452ed60037ea4c82d773f9c8e9c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
-  damage: 100
+  range: 5
+  damage: 50
   attackRate: 1
-  useRangeAttack: 1
+  useRangeAttack: 0
   bulletPrefab: {fileID: 1733362086350204, guid: 76078763072c84a4b8e9fa0216e3e009,
     type: 2}
   enemyTag: Enemy

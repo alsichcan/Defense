@@ -7,6 +7,6 @@ public class BossHPUI : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        BossHPText.text = "Boss " + PlayerStats.BossHitPoint.ToString() +"%";
+        BossHPText.text = "Boss " + PlayerStats.BossHealthPoint.ToString() +"%";
 	}
 }

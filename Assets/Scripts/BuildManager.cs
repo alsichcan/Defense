@@ -17,32 +17,44 @@ public class BuildManager : MonoBehaviour{
     public GameObject standardUnitPrefab;
 
     private UnitBluePrint unitToCreate;
+    private FloorTiles selectedTile;
+
+    public TileUI tileUI;
 
     // Unit을 생성할 수 있는지
     public bool CanCreate { get { return unitToCreate != null; } }
 
     public bool HasGold { get { return PlayerStats.Gold >= unitToCreate.cost; } }
 
-
-    public void CreateUnitOn(FloorTiles tile)
+    public void SelectTile (FloorTiles tile)
     {
-        if (PlayerStats.Gold < unitToCreate.cost)
+        if (selectedTile == tile)
         {
-            Debug.Log("Not enough Gold");
+            DeselectTile();
             return;
         }
+        selectedTile = tile;
+        unitToCreate = null;
 
-        PlayerStats.Gold -= unitToCreate.cost;
+        tileUI.SetTarget(tile);
+    }
 
-        GameObject unit = (GameObject) Instantiate(unitToCreate.prefab, tile.GetCreatePosition(), Quaternion.identity);
-        tile.unit = unit;
-
-        Debug.Log("Unit Created! Gold left: " + PlayerStats.Gold);
+    public void DeselectTile()
+    {
+        selectedTile = null;
+        tileUI.Hide();
     }
 
 
     public void SelectUnitToCreate(UnitBluePrint unit)
     {
         unitToCreate = unit;
+        DeselectTile();
+
+    }
+
+    public UnitBluePrint GetUnitToCreate()
+    {
+        return unitToCreate;
     }
 }
