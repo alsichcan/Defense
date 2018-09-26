@@ -8547,6 +8547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundsText: {fileID: 596156239}
+  menuSceneName: MainMenu
+  sceneFader: {fileID: 1782422144}
 --- !u!95 &437541852
 Animator:
   serializedVersion: 3
@@ -13275,7 +13277,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
 --- !u!114 &628208866
 MonoBehaviour:
@@ -15392,6 +15394,48 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4786450284326000, guid: f69de3d146d804f4c97dab23f57895bf,
     type: 2}
   m_PrefabInternal: {fileID: 732389103}
+--- !u!1001 &733152654
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4261725795915696, guid: af3aa07de0438e148b315bdb16d1db02, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261725795915696, guid: af3aa07de0438e148b315bdb16d1db02, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261725795915696, guid: af3aa07de0438e148b315bdb16d1db02, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261725795915696, guid: af3aa07de0438e148b315bdb16d1db02, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261725795915696, guid: af3aa07de0438e148b315bdb16d1db02, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261725795915696, guid: af3aa07de0438e148b315bdb16d1db02, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261725795915696, guid: af3aa07de0438e148b315bdb16d1db02, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261725795915696, guid: af3aa07de0438e148b315bdb16d1db02, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: af3aa07de0438e148b315bdb16d1db02, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!4 &734413045 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4941267675684888, guid: 70456d9346fb8f646a0f51cf62b6da57,
@@ -18764,7 +18808,7 @@ Transform:
   - {fileID: 411073412}
   - {fileID: 2001020675}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &918410146
 Prefab:
@@ -22073,7 +22117,7 @@ RectTransform:
   - {fileID: 1485620478}
   - {fileID: 1181374459}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -27175,7 +27219,7 @@ Transform:
   - {fileID: 1358591692}
   - {fileID: 796595141}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1309059967
 Prefab:
@@ -29416,7 +29460,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 75.84, y: -30.000002, z: -10.058001}
 --- !u!1001 &1426038233
 Prefab:
@@ -34496,8 +34540,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35abc55ecbe22c24baee64e5ba85d447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 4207663313500724, guid: 748661e169db2ad47afef5ef4c25e2e4,
-    type: 2}
+  rounds:
+  - enemy: {fileID: 0}
+  - enemy: {fileID: 1875297729973500, guid: 748661e169db2ad47afef5ef4c25e2e4, type: 2}
+  - enemy: {fileID: 1875297729973500, guid: 9056d82cd510b1144a5ab0ab1ca038fd, type: 2}
   spawnPoint: {fileID: 1358591692}
   waveCountdownText: {fileID: 1676251292}
 --- !u!4 &1690783711
@@ -34552,6 +34598,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 1181374458}
+  menuSceneName: MainMenu
+  sceneFader: {fileID: 1782422144}
 --- !u!1001 &1691561680
 Prefab:
   m_ObjectHideFlags: 0
@@ -36173,6 +36221,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4760944081305856, guid: 387361d1f6e43874486bc5e1a610ab9a,
     type: 2}
   m_PrefabInternal: {fileID: 35556492}
+--- !u!114 &1782422144 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114836711646374958, guid: af3aa07de0438e148b315bdb16d1db02,
+    type: 2}
+  m_PrefabInternal: {fileID: 733152654}
+  m_Script: {fileID: 11500000, guid: 4113fe611350c0441bf0f6646cdf4551, type: 3}
 --- !u!4 &1783905626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4941267675684888, guid: 70456d9346fb8f646a0f51cf62b6da57,
@@ -39723,7 +39777,7 @@ Transform:
   m_Children:
   - {fileID: 43218873}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1973549740
 MonoBehaviour:

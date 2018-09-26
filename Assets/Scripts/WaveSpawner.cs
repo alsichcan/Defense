@@ -5,7 +5,8 @@ using System.Collections;
 
 public class WaveSpawner : MonoBehaviour {
 
-    public Transform enemyPrefab;
+    public Round[] rounds;
+
     public Transform spawnPoint;
 
 
@@ -37,6 +38,15 @@ public class WaveSpawner : MonoBehaviour {
         // 다음 라운드 시작
         PlayerStats.Rounds++;
 
+        if (PlayerStats.Rounds == rounds.Length)
+        {
+            Debug.Log("Game Clear!");
+            this.enabled = false;
+            yield break;
+        }
+
+        Round round = rounds[PlayerStats.Rounds];
+
         // 1Round당 시간에
         for (int i = 0; i < roundWave; i++)
         {
@@ -44,16 +54,18 @@ public class WaveSpawner : MonoBehaviour {
             
             // 처음 1Round당 Enemy 수(40마리 = 40초)만큼 Enemy 생성
             // Enemy 소환 사이사이의 시간 (1초)만큼 기다림
-            SpawnEnemy();
+            SpawnEnemy(round.enemy);
             yield return new WaitForSeconds(1f);
            
         }
 
+
+
     }
 
-    void SpawnEnemy()
+    void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         PlayerStats.EnemyCount++;
     }
 
