@@ -312,29 +312,34 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Buttons.cs" />
     <Compile Include="Assets\Scripts\Attacker.cs" />
+    <Compile Include="Assets\Scripts\Barrack.cs" />
     <Compile Include="Assets\Scripts\BossHPUI.cs" />
+    <Compile Include="Assets\Scripts\BTNMove.cs" />
     <Compile Include="Assets\Scripts\BuildManager.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Buttons.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Commands.cs" />
     <Compile Include="Assets\Scripts\EnemyCountUI.cs" />
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\EnemyStats.cs" />
     <Compile Include="Assets\Scripts\FloorTiles.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\GoldUI.cs" />
+    <Compile Include="Assets\Scripts\LifeUI.cs" />
     <Compile Include="Assets\Scripts\LumberUI.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\ModeUI.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Round.cs" />
+    <Compile Include="Assets\Scripts\RoundCountdownUI.cs" />
     <Compile Include="Assets\Scripts\SceneFader.cs" />
-    <Compile Include="Assets\Scripts\TileUI.cs" />
-    <Compile Include="Assets\Scripts\UnitBluePrint.cs" />
-    <Compile Include="Assets\Scripts\WaveSpawner.cs" />
+    <Compile Include="Assets\Scripts\UnitBlueprint.cs" />
+    <Compile Include="Assets\Scripts\UnitStats.cs" />
     <Compile Include="Assets\Scripts\Waypoints.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,6 @@ public class GoldUI : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        goldText.text = "Gold " + PlayerStats.Gold.ToString();	
+        goldText.text = PlayerStats.Gold.ToString();	
 	}
 }

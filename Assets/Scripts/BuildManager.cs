@@ -14,17 +14,11 @@ public class BuildManager : MonoBehaviour{
         instance = this;
     }
 
-    public GameObject standardUnitPrefab;
+    public GameObject standardUnitPrefab;  // TODO : 자료구조? 
 
-    private UnitBluePrint unitToCreate;
+    private UnitBlueprint unitToCreate;
     private FloorTiles selectedTile;
-
-    public TileUI tileUI;
-
-    // Unit을 생성할 수 있는지
-    public bool CanCreate { get { return unitToCreate != null; } }
-
-    public bool HasGold { get { return PlayerStats.Gold >= unitToCreate.cost; } }
+    private FloorTiles rallyPointTile;
 
     public void SelectTile (FloorTiles tile)
     {
@@ -34,27 +28,22 @@ public class BuildManager : MonoBehaviour{
             return;
         }
         selectedTile = tile;
-        unitToCreate = null;
-
-        tileUI.SetTarget(tile);
+        unitToCreate = null;      
     }
 
     public void DeselectTile()
     {
         selectedTile = null;
-        tileUI.Hide();
     }
 
+    public void CreateUnit()
+    {
+   //     GameObject createdUnit = (GameObject)Instantiate(unitToCreate.prefab, selectedTile.GetCreatePosition(), selectedTile.GetCreateRotation());
+   //     selectedTile.AddUnit(createdUnit);
+    }
 
-    public void SelectUnitToCreate(UnitBluePrint unit)
+    public void SelectUnitToCreate(UnitBlueprint unit)
     {
         unitToCreate = unit;
-        DeselectTile();
-
-    }
-
-    public UnitBluePrint GetUnitToCreate()
-    {
-        return unitToCreate;
     }
 }

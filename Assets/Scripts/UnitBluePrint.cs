@@ -1,18 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 [System.Serializable]
+public class UnitBlueprint {
 
-public class UnitBluePrint {
+    [Header("UnitList")]
+    public GameObject[] unitAll;
+    public GameObject[] unitOnly;
+    public GameObject[] unitSpecial;
+    public GameObject[] unitLow;
+    public GameObject[] unitMiddle;
+    public GameObject[] unitHigh;
+ }
 
-    public GameObject prefab;
-    public int cost;
-
-    public GameObject upgradedPrefab;
-    public int upgradeCost;
-
-    public int GetSellAmount()
-    {
-        return cost / 2;
-    }
-
-}

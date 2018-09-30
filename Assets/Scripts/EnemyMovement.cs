@@ -22,7 +22,7 @@ public class EnemyMovement : MonoBehaviour {
         Vector3 dir = target.position - transform.position;
 
         // 벡터값에 따라 이동
-        transform.Translate(dir.normalized * enemy.speed * Time.deltaTime, Space.World);
+        transform.Translate(dir.normalized * enemy.unitSpeed * Time.deltaTime, Space.World);
 
         // 타겟 waypoint에 가까워졌을 때 새로운 waypoint를 구함
         if(Vector3.Distance(transform.position, target.position) <= 0.5f)

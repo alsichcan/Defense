@@ -7,6 +7,6 @@ public class LumberUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        lumberText.text = "Lumber " + PlayerStats.Lumber.ToString();
+        lumberText.text = PlayerStats.Lumber.ToString();
 	}
 }

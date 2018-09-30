@@ -7,34 +7,16 @@ public class Attacker : MonoBehaviour {
     private Transform target;
     private EnemyStats targetEnemy;
 
-    [Header("General")]
-    // Enemy 감지 범위
-    public float range = 15f;
-    // 평타 공격력
-    public int damage = 100;
-    // 1초에 몇 번 공격할 지
-    public float attackRate = 1f;
     // 연속으로 공격하도록
     private float attackCountdown = 0f;
-    
-    [Header("Melee Attack (default)")]
-
-
-    [Header("Range Attack")]
-    public bool useRangeAttack = false;
-    public GameObject bulletPrefab;
-
 
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
-
+    public Transform attackPoint;
     public Transform partToRotate;
     public float turnSpeed = 10f;
-
-
-    public Transform attackPoint;
     
-
+    /*
 	// Use this for initialization
 	void Start () {
         // 시작하자마자 (시작 0f후) UpdateTarget()을 0.5f마다 실행
@@ -127,4 +109,5 @@ public class Attacker : MonoBehaviour {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+    */
 }

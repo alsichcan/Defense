@@ -1,34 +1,45 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyStats : MonoBehaviour {
 
-    
-    [Header("Enemy Stats")]
-    public float startSpeed = 10f;
-    public float startHealth = 100;
-    public float health;
-    public int armor;
-    public float speed;
+    [Header("EnemyInfo")]
+    public string enemyName;
+    public string enemyClass;
+    public Sprite unitPortrait;
+    public int enemyRound;
+
+    [Header("UnitStats")]
+    public float startUnitHealth;
+    public float startUnitArmor;
+    public float startUnitSpeed;
     public int goldDrop;
 
-    [Header("Unity Stuff")]
+    [HideInInspector]
+    public float unitHealth, unitArmor, unitSpeed;
+    [HideInInspector]
+    public ArrayList unitStatus;
+
+    [Header("UI Element")]
     public Image healthBar;
 
 
     private void Start()
     {
-        speed = startSpeed;
-        health = startHealth;
+        unitHealth = startUnitHealth;
+        unitArmor = startUnitArmor;
+        unitSpeed = startUnitSpeed;
+        unitStatus = new ArrayList();
     }
 
     public void TakeDamage (int damage)
     {
-        health -= damage;
+        unitHealth -= damage;
 
-        healthBar.fillAmount = health / startHealth;
+        healthBar.fillAmount = unitHealth / startUnitHealth;
 
-        if(health <= 0)
+        if(unitHealth <= 0)
         {
             Die();
         }
@@ -37,7 +48,7 @@ public class EnemyStats : MonoBehaviour {
     void Die()
     {
         Destroy(gameObject);
-        PlayerStats.EnemyCount--;
+        GameManager.EnemyCount--;
         PlayerStats.Gold += goldDrop;
     }
 }

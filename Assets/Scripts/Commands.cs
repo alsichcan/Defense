@@ -2,7 +2,7 @@
 
 public class Commands : MonoBehaviour {
 
-    public UnitBluePrint standardUnit;
+    public UnitBlueprint standardUnit;
     
     BuildManager buildManager;
 

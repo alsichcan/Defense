@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
 
-    public static int Rounds;
+    public static int Life;
+    public int startLife = 5;
 
     public static int Gold;
     public int startGold = 10;
@@ -11,20 +12,11 @@ public class PlayerStats : MonoBehaviour {
     public static int Lumber;
     public int startLumber = 5;
 
-    public static int EnemyCount;
-    public int startEnemyCount= 0;
-
-    public static int BossHealthPoint;
-    public int startBossHealthPoint = 0;
-
     private void Start()
     {
+        Life = startLife;
         Gold = startGold;
         Lumber = startLumber;
-        EnemyCount = startEnemyCount;
-        BossHealthPoint = startBossHealthPoint;
-
-        Rounds = 0;
     }
 
 
